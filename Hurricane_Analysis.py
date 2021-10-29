@@ -98,9 +98,15 @@ print(year_hurr_dict(hurricane_name_dict))
 
 
 # write your count affected areas function here:
+# You believe that knowing how often each of the areas of the Atlantic are affected by these strong hurricanes is important for making preparations for future hurricanes.
+# Write a function that counts how often each area is listed as an affected area of a hurricane. Store and return the results in a dictionary where the keys are the affected areas and the values are counts of how many times the areas were affected.
+# Test your function on your hurricane dictionary.
 
-
-
+def occurance_area(dict):
+	occur_dict = {}
+	for key, value in hurricane_name_dict.items():
+		areas = value.get("Areas Affected")
+		
 
 
 
