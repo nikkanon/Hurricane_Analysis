@@ -93,7 +93,7 @@ def year_hurr_dict(dict):
 	return year_dict
 
 print(year_hurr_dict(hurricane_name_dict))
-
+hurricane_year_dict = year_hurr_dict(hurricane_name_dict)
 
 
 
@@ -104,8 +104,24 @@ print(year_hurr_dict(hurricane_name_dict))
 
 def occurance_area(dict):
 	occur_dict = {}
-	for key, value in hurricane_name_dict.items():
-		areas = value.get("Areas Affected")
+	area_gross =[]
+	for key, value in hurricane_name_dict.items(): #build gross-list
+		area_gross.append(value.get("Areas Affected"))
+	for area in area_gross: #build occurance dictionary
+		if (area in occur_dict):
+			occur_dict[area] += 1
+		else:
+			occur_dict[area] = 1
+	return occur_dict
+
+print(occurance_area(hurricane_name_dict))
+
+
+
+
+
+
+
 		
 
 
