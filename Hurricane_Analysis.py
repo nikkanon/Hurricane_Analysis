@@ -73,14 +73,26 @@ def construct_hurr_dict(names, months, years, max_sustained_winds, areas_affecte
 
 
 print(construct_hurr_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths))
-hurricane_dictionary = construct_hurr_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
+hurricane_name_dict = construct_hurr_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
 
 
 
 # write your construct hurricane by year dictionary function here:
+# In addition to organizing the hurricanes in a dictionary with names as the key, you want to be able to organize the hurricanes by year.
 
+# Write a function that converts the current dictionary of hurricanes to a new dictionary, where the keys are years and the values are lists containing a dictionary for each hurricane that occurred in that year.
+# or example, the key 1932 would yield the value: [{'Name': 'Bahamas', 'Month': 'September', 'Year': 1932, 'Max Sustained Wind': 160, 'Areas Affected': ['The Bahamas', 'Northeastern United States'], 'Damage': 'Damages not recorded', 'Deaths': 16}, {'Name': 'Cuba II', 'Month': 'November', 'Year': 1932, 'Max Sustained Wind': 175, 'Areas Affected': ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], 'Damage': 40000000.0, 'Deaths': 3103}].
 
+# Test your function on your hurricane dictionary.
 
+def year_hurr_dict(dict):
+	year_dict = {}
+	for key, value in hurricane_name_dict.items():
+		key = value.get("Year")
+		year_dict.update({key: value})
+	return year_dict
+
+print(year_hurr_dict(hurricane_name_dict))
 
 
 
