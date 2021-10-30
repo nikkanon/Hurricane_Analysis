@@ -87,7 +87,7 @@ hurricane_name_dict = construct_hurr_dict(names, months, years, max_sustained_wi
 
 def year_hurr_dict(dict):
 	year_dict = {}
-	for key, value in hurricane_name_dict.items():
+	for key, value in dict.items():
 		key = value.get("Year")
 		year_dict.update({key: value})
 	return year_dict
