@@ -146,9 +146,25 @@ print("This is the most affected area by hurricanes: " + str(area_max) + " it ha
 
 # write your greatest number of deaths function here:
 
+#Write a function that finds the hurricane that caused the greatest number of deaths, and how many deaths it caused.
 
+#Test your function on your hurricane dictionary.
 
+def most_deaths (dict):
+	deadliest_hurr = ""
+	max_deaths = 0
+	#hurrican_gross = []
+	for key, value in dict.items():
+		if value["Deaths"] > max_deaths:
+			max_deaths = value["Deaths"]
+			deadliest_hurr = key
+		else:
+			continue
+	return deadliest_hurr
 
+deadliest_hurricane = most_deaths(hurricane_name_dict)
+max_deaths = (hurricane_name_dict.get(deadliest_hurricane)).get("Deaths")
+print("This is the most deadly hurricane: " + str(deadliest_hurricane) + " it has killed " + str(max_deaths) + " humans")
 
 
 
