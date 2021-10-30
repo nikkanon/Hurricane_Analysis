@@ -170,7 +170,24 @@ print("This is the most deadly hurricane: " + str(deadliest_hurricane) + " it ha
 
 # write your catgeorize by mortality function here:
 
+#Just as hurricanes are rated by their windspeed, you want to try rating hurricanes based on other metrics.
 
+#Write a function that rates hurricanes on a mortality scale according to the following ratings, where the key is the rating and the value is the upper bound of deaths for that rating.
+
+#mortality_scale = {0: 0,
+#                   1: 100,
+#                   2: 500,
+#                   3: 1000,
+#                   4: 10000}
+#For example, a hurricane with a 1 mortality rating would have resulted in greater than 0 but less than or equal to 100 deaths. A hurricane with a 5 mortality rating would have resulted in greater than 10000 deaths.
+
+#Store the hurricanes in a new dictionary where the keys are mortality ratings and the values are lists containing a dictionary for each hurricane that falls into that mortality rating.
+
+#Test your function on your hurricane dictionary.
+
+def mortality_dict(dict):
+	mortal_dict = {}
+	
 
 
 
