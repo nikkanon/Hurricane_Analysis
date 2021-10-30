@@ -42,7 +42,7 @@ def update_damages(list):
 			continue
 	return fixed_damages
 
-print(update_damages(damages))
+#print(update_damages(damages))
 cleaned_damages = update_damages(damages)
 
 
@@ -72,7 +72,7 @@ def construct_hurr_dict(names, months, years, max_sustained_winds, areas_affecte
 	return hurr_dict
 
 
-print(construct_hurr_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths))
+#print(construct_hurr_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths))
 hurricane_name_dict = construct_hurr_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
 
 
@@ -92,7 +92,7 @@ def year_hurr_dict(dict):
 		year_dict.update({key: value})
 	return year_dict
 
-print(year_hurr_dict(hurricane_name_dict))
+#print(year_hurr_dict(hurricane_name_dict))
 hurricane_year_dict = year_hurr_dict(hurricane_name_dict)
 
 
@@ -118,7 +118,7 @@ def occurance_area(dict):
 			occur_dict[area] = 1
 	return occur_dict
 
-print(occurance_area(hurricane_name_dict))
+#print(occurance_area(hurricane_name_dict))
 occurance_area_dict = occurance_area(hurricane_name_dict)
 
 
@@ -163,7 +163,7 @@ def most_deaths (dict):
 
 deadliest_hurricane = most_deaths(hurricane_name_dict)
 max_deaths = (hurricane_name_dict.get(deadliest_hurricane)).get("Deaths")
-print("This is the most deadly hurricane: " + str(deadliest_hurricane) + " it has killed " + str(max_deaths) + " humans")
+print("This is the most deadly hurricane: " + str(deadliest_hurricane) + " it killed " + str(max_deaths) + " humans")
 
 
 
@@ -208,7 +208,7 @@ def mortality_dict(dict):
 			mortal_dict[mortal_rating] = value
 	return mortal_dict
 
-print(mortality_dict(hurricane_name_dict))
+#print(mortality_dict(hurricane_name_dict))
 mortality_rating_dict = mortality_dict(hurricane_name_dict)
 
 
@@ -221,7 +221,7 @@ mortality_rating_dict = mortality_dict(hurricane_name_dict)
 def most_damage (dict):
 	damage_hurr = ""
 	max_dmg = 0
-	for key, value in dict.items(): #clean up damages --> float
+	for key, value in dict.items(): #clean up damages --> float --> int
 		if value["Damage"] == "Damages not recorded":
 			value["Damage"] = 0
 		elif value["Damage"][-1] == "M":
@@ -238,10 +238,66 @@ def most_damage (dict):
 			continue
 	return damage_hurr
 
-print(most_damage(hurricane_name_dict))
-#max_damage = (hurricane_name_dict.get(dmg_hurricane)).get("Damage")
-#print("This is the most deadly hurricane: " + str(dmg_hurricane) + " it has killed " + str(max_deaths) + " humans")
+most_damage_hurr = most_damage(hurricane_name_dict)
+max_damage = (hurricane_name_dict.get(most_damage_hurr)).get("Damage")
+print("This is the most damaging hurricane: " + str(most_damage_hurr) + " it caused damages for " + str(max_damage) + " dollars")
 
 
 
 # write your catgeorize by damage function here:
+#Lastly, you want to rate hurricanes according to how much damage they cause.
+
+#Write a function that rates hurricanes on a damage scale according to the following ratings, where the 
+#key is the rating and the value is the upper bound of damage for that rating.
+
+#damage_scale = {0: 0,
+#               1: 100000000,
+#                2: 1000000000,
+#                3: 10000000000,
+#                4: 50000000000}
+#For example, a hurricane with a 1 damage rating would have resulted in damages greater than 0 USD but less 
+#than or equal to 100000000 USD. A hurricane with a 5 damage rating would have resulted in damages greater than 
+#50000000000 USD (talk about a lot of money).
+#
+#Store the hurricanes in a new dictionary where the keys are damage ratings and the values are lists containing a 
+#dictionary for each hurricane that falls into that damage rating.
+#
+#Test your function on your hurricane dictionary.
+
+
+def damages_dict(dict):
+	damages_dict = {}
+	damages_rating = 0
+	or key, value in dict.items(): #clean up damages --> float --> int
+		if value["Damage"] == "Damages not recorded":
+			value["Damage"] = 0
+		elif value["Damage"][-1] == "M":
+			value["Damage"] = int(float(value["Damage"][:-1])*1000000)
+		elif value["Damage"][-1] == "B":
+			value["Damage"] = int(float(value["Damage"][:-1])*1000000000)
+		else:
+			continue
+	for key, value in dict.items():
+		if value.get("Damage") > 0 and value.get("Deaths") <= 100:
+			mortal_rating = 1
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 100 and value.get("Deaths") <= 500:
+			mortal_rating = 2
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 500 and value.get("Deaths") <= 1000:
+			mortal_rating = 3
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 1000 and value.get("Deaths") <= 10000:
+			mortal_rating = 4
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 10000:
+			mortal_rating = 5
+			mortal_dict[mortal_rating] = value
+		else:
+			mortal_rating = 0
+			mortal_dict[mortal_rating] = value
+	return mortal_dict
+
+#print(mortality_dict(hurricane_name_dict))
+mortality_rating_dict = mortality_dict(hurricane_name_dict)
+
