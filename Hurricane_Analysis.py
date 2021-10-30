@@ -153,7 +153,6 @@ print("This is the most affected area by hurricanes: " + str(area_max) + " it ha
 def most_deaths (dict):
 	deadliest_hurr = ""
 	max_deaths = 0
-	#hurrican_gross = []
 	for key, value in dict.items():
 		if value["Deaths"] > max_deaths:
 			max_deaths = value["Deaths"]
@@ -216,10 +215,32 @@ mortality_rating_dict = mortality_dict(hurricane_name_dict)
 
 
 # write your greatest damage function here:
+#Write a function that finds the hurricane that caused the greatest damage, and how costly it was.
 
+#Test your function on your hurricane dictionary.
+def most_damage (dict):
+	damage_hurr = ""
+	max_dmg = 0
+	for key, value in dict.items(): #clean up damages --> float
+		if value["Damage"] == "Damages not recorded":
+			value["Damage"] = 0
+		elif value["Damage"][-1] == "M":
+			value["Damage"] = int(float(value["Damage"][:-1])*1000000)
+		elif damages[-1] == "B":
+			value["Damage"] = int(float(value["Damage"][:-1])*1000000000)
+		else:
+			continue
+	#for key, value in dict.items(): #now lets find the largest damage hurricane
+	#	if value["Damage"] > max_dmg:
+	#		max_dmg = int(value["Damage"])
+	#		damage_hurr = key
+	#	else:
+	#		continue
+	return dict
 
-
-
+print(most_damage(hurricane_name_dict))
+#max_damage = (hurricane_name_dict.get(dmg_hurricane)).get("Damage")
+#print("This is the most deadly hurricane: " + str(dmg_hurricane) + " it has killed " + str(max_deaths) + " humans")
 
 
 
