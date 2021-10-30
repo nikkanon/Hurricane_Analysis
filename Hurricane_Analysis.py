@@ -226,17 +226,17 @@ def most_damage (dict):
 			value["Damage"] = 0
 		elif value["Damage"][-1] == "M":
 			value["Damage"] = int(float(value["Damage"][:-1])*1000000)
-		elif damages[-1] == "B":
+		elif value["Damage"][-1] == "B":
 			value["Damage"] = int(float(value["Damage"][:-1])*1000000000)
 		else:
 			continue
-	#for key, value in dict.items(): #now lets find the largest damage hurricane
-	#	if value["Damage"] > max_dmg:
-	#		max_dmg = int(value["Damage"])
-	#		damage_hurr = key
-	#	else:
-	#		continue
-	return dict
+	for key, value in dict.items(): #now lets find the largest damage hurricane
+		if value["Damage"] > max_dmg:
+			max_dmg = int(value["Damage"])
+			damage_hurr = key
+		else:
+			continue
+	return damage_hurr
 
 print(most_damage(hurricane_name_dict))
 #max_damage = (hurricane_name_dict.get(dmg_hurricane)).get("Damage")
