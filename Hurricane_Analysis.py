@@ -105,32 +105,41 @@ hurricane_year_dict = year_hurr_dict(hurricane_name_dict)
 def occurance_area(dict):
 	occur_dict = {}
 	area_gross =[]
-	for key, value in hurricane_name_dict.items(): #build gross-list
+	for key, value in dict.items(): #build gross-list from hurrican dictionary, it will become a list of lists
 		area_gross.append(value.get("Areas Affected")) 
-	for area in area_gross: #build occurance dictionary --- fuck area_gross is a list of lists.. how to append each element so list become a list of strings....
-		if area in occur_dict: #must change to 
+	area_flat_list = []
+	for area_list in area_gross: #convert the area gross list from list of lists to a area flat list
+		for area in area_list:
+			area_flat_list.append(area)
+	for area in area_flat_list: #build occurance dictionary from area flat list
+		if area in occur_dict:
 			occur_dict[area] += 1
 		else:
 			occur_dict[area] = 1
 	return occur_dict
 
 print(occurance_area(hurricane_name_dict))
-
-
-
-
-
-
-
-		
-
-
+occurance_area_dict = occurance_area(hurricane_name_dict)
 
 
 # write your find most affected area function here:
+#Write a function that finds the area affected by the most hurricanes, and how often it was hit.
 
+#Test your function on your affected area dictionary.
+def most_affected_area(dict):
+	maxi = 0
+	most_affect = ""
+	for key, value in dict.items():
+		if value > maxi:
+			maxi = value
+			most_affect = key
+		else:
+			continue
+	return most_affect
 
+area_max = most_affected_area(occurance_area_dict)
 
+print("This is the most affected area by hurricanes: " + str(area_max) + " it has been hit " + str(occurance_area_dict[str(area_max)]) + " times by a hurricanes")
 
 
 
