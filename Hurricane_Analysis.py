@@ -289,6 +289,6 @@ def damage_dict(dict):
 			damages_dict[damages_rating] = value
 	return damages_dict
 
-print(damage_dict(hurricane_name_dict))
+#print(damage_dict(hurricane_name_dict))
 damage_rating_dict = damage_dict(hurricane_name_dict)
 
