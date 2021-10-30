@@ -187,8 +187,30 @@ print("This is the most deadly hurricane: " + str(deadliest_hurricane) + " it ha
 
 def mortality_dict(dict):
 	mortal_dict = {}
-	
+	mortal_rating = 0
+	for key, value in dict.items():
+		if value.get("Deaths") > 0 and value.get("Deaths") <= 100:
+			mortal_rating = 1
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 100 and value.get("Deaths") <= 500:
+			mortal_rating = 2
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 500 and value.get("Deaths") <= 1000:
+			mortal_rating = 3
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 1000 and value.get("Deaths") <= 10000:
+			mortal_rating = 4
+			mortal_dict[mortal_rating] = value
+		elif value.get("Deaths") > 10000:
+			mortal_rating = 5
+			mortal_dict[mortal_rating] = value
+		else:
+			mortal_rating = 0
+			mortal_dict[mortal_rating] = value
+	return mortal_dict
 
+print(mortality_dict(hurricane_name_dict))
+mortality_rating_dict = mortality_dict(hurricane_name_dict)
 
 
 
