@@ -221,7 +221,7 @@ mortality_rating_dict = mortality_dict(hurricane_name_dict)
 def most_damage (dict):
 	damage_hurr = ""
 	max_dmg = 0
-	for key, value in dict.items(): #clean up damages --> float --> int
+	for key, value in dict.items(): #clean up damages --> float --> int in hurricane_name_dict (will carry to next exercise)
 		if value["Damage"] == "Damages not recorded":
 			value["Damage"] = 0
 		elif value["Damage"][-1] == "M":
@@ -265,39 +265,30 @@ print("This is the most damaging hurricane: " + str(most_damage_hurr) + " it cau
 #Test your function on your hurricane dictionary.
 
 
-def damages_dict(dict):
+def damage_dict(dict):
 	damages_dict = {}
 	damages_rating = 0
-	or key, value in dict.items(): #clean up damages --> float --> int
-		if value["Damage"] == "Damages not recorded":
-			value["Damage"] = 0
-		elif value["Damage"][-1] == "M":
-			value["Damage"] = int(float(value["Damage"][:-1])*1000000)
-		elif value["Damage"][-1] == "B":
-			value["Damage"] = int(float(value["Damage"][:-1])*1000000000)
-		else:
-			continue
 	for key, value in dict.items():
-		if value.get("Damage") > 0 and value.get("Deaths") <= 100:
-			mortal_rating = 1
-			mortal_dict[mortal_rating] = value
-		elif value.get("Deaths") > 100 and value.get("Deaths") <= 500:
-			mortal_rating = 2
-			mortal_dict[mortal_rating] = value
-		elif value.get("Deaths") > 500 and value.get("Deaths") <= 1000:
-			mortal_rating = 3
-			mortal_dict[mortal_rating] = value
-		elif value.get("Deaths") > 1000 and value.get("Deaths") <= 10000:
-			mortal_rating = 4
-			mortal_dict[mortal_rating] = value
-		elif value.get("Deaths") > 10000:
-			mortal_rating = 5
-			mortal_dict[mortal_rating] = value
+		if value.get("Damage") > 0 and value.get("Damage") <= 100000000:
+			damages_rating = 1
+			damages_dict[damages_rating] = value
+		elif value.get("Damage") > 100000000 and value.get("Damage") <= 1000000000:
+			damages_rating = 2
+			damages_dict[damages_rating] = value
+		elif value.get("Damage") > 1000000000 and value.get("Damage") <= 10000000000:
+			damages_rating = 3
+			damages_dict[damages_rating] = value
+		elif value.get("Damage") > 10000000000 and value.get("Damage") <= 50000000000:
+			damages_rating = 4
+			damages_dict[damages_rating] = value
+		elif value.get("Damage") > 50000000000:
+			damages_rating = 5
+			damages_dict[damages_rating] = value
 		else:
-			mortal_rating = 0
-			mortal_dict[mortal_rating] = value
-	return mortal_dict
+			damages_rating = 0
+			damages_dict[damages_rating] = value
+	return damages_dict
 
-#print(mortality_dict(hurricane_name_dict))
-mortality_rating_dict = mortality_dict(hurricane_name_dict)
+print(damage_dict(hurricane_name_dict))
+damage_rating_dict = damage_dict(hurricane_name_dict)
 
