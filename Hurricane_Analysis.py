@@ -106,9 +106,9 @@ def occurance_area(dict):
 	occur_dict = {}
 	area_gross =[]
 	for key, value in hurricane_name_dict.items(): #build gross-list
-		area_gross.append(value.get("Areas Affected"))
+		area_gross.append(value.get("Areas Affected")) 
 	for area in area_gross: #build occurance dictionary --- fuck area_gross is a list of lists.. how to append each element so list become a list of strings....
-		if area in occur_dict:
+		if area in occur_dict: #must change to 
 			occur_dict[area] += 1
 		else:
 			occur_dict[area] = 1
